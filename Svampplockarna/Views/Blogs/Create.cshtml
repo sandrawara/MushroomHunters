@@ -1,0 +1,46 @@
+﻿@model Svampplockarna.Models.Blog
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>Create new post</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label">Title</label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Author" class="control-label">Author</label>
+                <input asp-for="Author" class="form-control" />
+                <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label">Mushrooms found</label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Create new post</label>
+                <textarea id="text" name="content" class="form-control" style="height: 300px; width: 600px"></textarea><br />
+                <script>CKEDITOR.replace("text")</script>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Post &#127812;" class="btn btn-success">
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

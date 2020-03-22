@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model IEnumerable<Svampplockarna.Models.Blog>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+    <div class="container">
+        @if (SignInManager.IsSignedIn(User)) //Accsess if user is logged in
+        {
+            <p><a asp-controller="Blogs" asp-action="Create">Create new post</a></p>
+        }
+            @foreach (var item in Model)
+            {
+                <div>
+                    <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+
+
+                    <p>@Html.Raw(item.Content)</p>
+
+                    <p>Mushrooms Found: @Html.DisplayFor(modelItem => item.Quantity)</p>
+
+                    <p>Written by: @Html.DisplayFor(modelItem => item.Author)</p>
+
+                    @if (SignInManager.IsSignedIn(User))  //Accsess if user is logged in
+                    {
+                        <a asp-controller="Blogs" asp-action="Edit" asp-route-id="@item.Id">Edit |</a>
+                        <a asp-controller="Blogs" asp-action="Details" asp-route-id="@item.Id">Details |</a>
+                        <a asp-controller="Blogs" asp-action="Delete" asp-route-id="@item.Id">Delete |</a>
+                    }
+                </div>
+            }
+
+
+        </div>

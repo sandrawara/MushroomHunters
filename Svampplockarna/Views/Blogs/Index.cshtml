@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Svampplockarna.Models.Blog>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p><a asp-action="Create">Create new post</a></p>
+
+<div class="container">
+
+@foreach (var item in Model) {
+    <div>
+         <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+
+
+         <p>@Html.Raw(item.Content)</p>
+
+         <p>Mushrooms Found: @Html.DisplayFor(modelItem => item.Quantity)</p>
+
+        <p>Written by: @Html.DisplayFor(modelItem => item.Author)</p>
+
+        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+         <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+
+        </div>
+}
+    
+</div>
